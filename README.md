@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
+Application requires PostgreSQL and Redis to be installed and listening on default ports.
 
-Things you may want to cover:
+1. Install gems: `bundle install`
+1. Create and migrate database: `rails db:create && rails db:migrate`
 
-* Ruby version
+## Usage
+To start application you need to:
 
-* System dependencies
+1. Start rails server: `rails server`
+1. Start sidekiq server: `sidekiq`
 
-* Configuration
+Application has 3 pages:
+- Root page (where event form is): `/`
+- Report page (where customer rewards information and event error logs are displayed): `/event`
+- Sidekiq web page: `/sidekiq`
 
-* Database creation
+When you add events through event form on the root page, background tasks process events and save to database
+So you can see results on the report page.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## !!!Warnings!!!
+- Events are processed asynchroniously so report page reload may be required to see the actual information
+- Customer validation does not allows creation of customers with same names due to orders association by this attribute

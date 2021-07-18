@@ -14,3 +14,11 @@ Layout/LineLength:
 
 Style/Documentation:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Rails/TimeZone:
+  Exclude:
+    - 'app/services/save_order.rb'

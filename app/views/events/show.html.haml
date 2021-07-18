@@ -1,0 +1,16 @@
+%div
+  %h2 #{t('report')}:
+  - @customers.each do |customer|
+    - if customer.points
+      %p= t('customer_points', name: customer.name, points: customer.points, points_average: customer.points_average)
+    - else
+      %p= t('no_orders', name: customer.name)
+%div
+  %h2 #{t('error_logs')}:
+  - @logs.each do |log|
+    %div
+      %h4= t('data')
+      %p= log.data
+      %h4= t('errors')
+      - log.event_errors.each do |error, messages|
+        %p #{error.to_s.titleize}: #{messages.join(', ')}

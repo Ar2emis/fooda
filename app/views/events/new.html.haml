@@ -1,0 +1,5 @@
+%h1= t('project_name')
+%p= t('enter_event_data')
+= form_with url: event_path do |f|
+  = f.text_area :event_data, cols: 100, rows: 40
+  = f.submit
